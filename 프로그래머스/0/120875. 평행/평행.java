@@ -7,7 +7,7 @@ class Solution {
 
         if (slope1 == slope2) {
             answer = 1;
-        } else if (slope1 == 0 && slope2 == 0) {
+        } else if (slope1 == 0 || slope2 == 0) {
             answer = 0;
         }
 
