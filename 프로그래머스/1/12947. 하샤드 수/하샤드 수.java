@@ -8,10 +8,6 @@ class Solution {
         for(char ch : str.toCharArray()){
             num += ch - '0';
         }
-        if (x % num == 0) {
-            return true;
-        } else {
-            return false;
-        }
+        return x % num == 0 ? true : false;
     }
 }
