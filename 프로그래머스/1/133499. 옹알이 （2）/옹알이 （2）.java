@@ -10,12 +10,10 @@ class Solution {
             for (int j = 0; j < str.length; j++) {
                 babbling[i] = babbling[i].replaceAll(str2[j], "1").replaceAll(str[j], " ");
             }
-            
             if (babbling[i].trim().length() == 0) {
                 answer++;
             }
         }
-        
         return answer;
     }
 }
