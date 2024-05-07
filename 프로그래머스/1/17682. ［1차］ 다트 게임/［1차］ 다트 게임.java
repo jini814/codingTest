@@ -11,9 +11,7 @@ class Solution {
             
             if(c >= '0' && c <= '9') {       
                  num = num * 10 + (c - '0');    
-            }
-            
-            else if( c == 'S' || c == 'D' || c == 'T' ) {
+            } else if( c == 'S' || c == 'D' || c == 'T' ) {
                if ( c == 'S' ) {
                    dart[idx++] = (int)Math.pow(num, 1);
                  }
@@ -24,8 +22,7 @@ class Solution {
                     dart[idx++] = (int)Math.pow(num, 3);
                 } 
                 num = 0;
-            }
-            else {
+            } else {
                 if(c == '*'){
                     dart[idx - 1] *= 2;
                     if (idx -2 >= 0) {
