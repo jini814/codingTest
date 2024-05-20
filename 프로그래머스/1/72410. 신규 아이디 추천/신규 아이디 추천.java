@@ -1,19 +1,21 @@
 class Solution {
     public String solution(String new_id) {
+        String filter = new_id
+            .toLowerCase()
+            .replaceAll("[^a-z0-9-_.]", "")
+            .replaceAll("[.]{2,}", ".")
+            .replaceAll("^[.]|[.]$", "");
         
-        String step1 = new_id.toLowerCase();
-        String step2 = step1.replaceAll("[^a-z0-9-_.]", "");
-        String step3 = step2.replaceAll("[.]{2,}", ".");
-        String step4 = step3.replaceAll("^[.]|[.]$", "");
-        String step5 = step4.isEmpty() ? "a" : step4;
-        if (step5.length() >= 16) {
-            step5 = step5.substring(0, 15);
-            step5 = step5.replaceAll("[.]$", "");
+        String new_filter = filter.isEmpty() ? "a" : filter;
+
+        if (new_filter.length() >= 16) {
+            new_filter = new_filter.substring(0, 15);
+            new_filter = new_filter.replaceAll("[.]$", "");
         }
-        StringBuilder step7 = new StringBuilder(step5);
-        while (step7.length() < 3) {
-            step7.append(step7.charAt(step7.length() - 1));
+        StringBuilder answer = new StringBuilder(new_filter);
+        while (answer.length() < 3) {
+            answer.append(answer.charAt(answer.length() - 1));
         }
-        return step7.toString();
+        return answer.toString();
     }
 }
