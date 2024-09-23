@@ -19,17 +19,13 @@ class Solution {
                 i++;
                 w += msg.charAt(i);
             }
-            
-            // 색인 번호 출력
             answer.add(dictionary.get(w));
-            
-            // 새로운 단어 사전에 추가
             if (i + 1 < msg.length()) {
                 dictionary.put(w + msg.charAt(i + 1), nextCode++);
             }
         }
         
-        // List<Integer>를 int[] 로 변환
+        // List<Integer>를 int[] 로 변환 -> gpt 굿 ㅎ
         return answer.stream().mapToInt(Integer::intValue).toArray();
     }
 }
