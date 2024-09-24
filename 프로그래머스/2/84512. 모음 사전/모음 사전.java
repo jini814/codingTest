@@ -1,15 +1,17 @@
 class Solution {
     public int solution(String word) {
-        String str = "AEIOU"; // 모음 문자열
-        int[] nums = {781, 156, 31, 6, 1}; // 각 자리수의 가중치
-        int answer = word.length();
+        int answer = 0;
+        int num = 781;
 
-        // 배열 word 순회
-        for (int i = 0; i < word.length(); i++) {
-            // 현재 문자가 모음 str의 몇 번째 인덱스인지 저장
-            int idx = str.indexOf(word.charAt(i));
-            // 현재 문자의 가중치 * idx
-            answer += nums[i] * idx;
+        char chr[] = {'A', 'E', 'I', 'O', 'U'};
+
+        for(int i = 0; i < word.length(); i++){
+            for(int j = 0; j < 5; j++){
+                if(chr[j] == word.charAt(i)){
+                    answer += 1 + j * num;
+                }
+            }
+            num = (num - 1) / 5;
         }
 
         return answer;
