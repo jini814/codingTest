@@ -6,7 +6,7 @@ class Solution {
         PriorityQueue<Integer> queue = new PriorityQueue<>();
         
         for (int s : scoville) {
-            queue.offer(s);
+            queue.add(s);
         }
         
         while (queue.peek() < K) {
@@ -18,7 +18,7 @@ class Solution {
             int num2 = queue.poll(); 
             
             int newScoville = num1 + (num2 * 2);
-            queue.offer(newScoville);  
+            queue.add(newScoville);  
             
             answer++;
         }
