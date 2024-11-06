@@ -2,31 +2,32 @@ import java.util.*;
 
 class Solution {
     public int solution(String[][] book_time) {
-        int[][] times = new int[book_time.length][2];
+        int answer = 0;
         
-        for (int i = 0; i < book_time.length; i++) {
-            times[i][0] = timeToMinutes(book_time[i][0]);
-            times[i][1] = timeToMinutes(book_time[i][1]) + 10; 
-        }
-
-        Arrays.sort(times, Comparator.comparingInt(a -> a[0]));
-
-        PriorityQueue<Integer> roomEndTimes = new PriorityQueue<>();
+        int[] rooms =  new int[60*24+10];
         
-        for (int[] time : times) {
-            if (!roomEndTimes.isEmpty() && roomEndTimes.peek() <= time[0]) {
-                roomEndTimes.poll(); 
-            }
-            roomEndTimes.offer(time[1]); 
+        for(String t[]:book_time){
+            int s = stringToInt(t[0]);
+            int e = stringToInt(t[1])+10; 
+            
+            rooms[s] += 1;
+            rooms[e] -= 1;
         }
-
-        return roomEndTimes.size(); 
+        
+        for(int i=1; i<60*24+10; i++){
+            rooms[i] += rooms[i-1];
+            answer = Math.max(rooms[i], answer);
+        }
+        
+        return answer;
     }
-
-    private int timeToMinutes(String time) {
-        String[] parts = time.split(":");
-        int hours = Integer.parseInt(parts[0]);
-        int minutes = Integer.parseInt(parts[1]);
-        return hours * 60 + minutes;
+    
+    static int stringToInt(String time){
+        int hour = Integer.parseInt(time.substring(0, 2));
+        int min = Integer.parseInt(time.substring(3, time.length()));
+        
+        return hour*60+min;
     }
+    
+    
 }
