@@ -6,21 +6,21 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        int nA = Integer.parseInt(st.nextToken());
-        int nB = Integer.parseInt(st.nextToken());
+        String[] input = br.readLine().split(" ");
+        int nA = Integer.parseInt(input[0]);
+        int nB = Integer.parseInt(input[1]);
 
         Set<Integer> setA = new HashSet<>();
         Set<Integer> setB = new HashSet<>();
 
-        st = new StringTokenizer(br.readLine());
-        while (st.hasMoreTokens()) {
-            setA.add(Integer.parseInt(st.nextToken()));
+        String[] elementsA = br.readLine().split(" ");
+        for (String num : elementsA) {
+            setA.add(Integer.parseInt(num));
         }
 
-        st = new StringTokenizer(br.readLine());
-        while (st.hasMoreTokens()) {
-            setB.add(Integer.parseInt(st.nextToken()));
+        String[] elementsB = br.readLine().split(" ");
+        for (String num : elementsB) {
+            setB.add(Integer.parseInt(num));
         }
 
         setA.removeAll(setB);
