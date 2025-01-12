@@ -1,48 +1,32 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String nStr = br.readLine();
+        int N = Integer.parseInt(br.readLine());
+        int[] arr = new int[N];
+        String[] input = br.readLine().split(" ");
 
-        if (nStr == null || nStr.isEmpty()) {
-            System.out.println(0);
-            return;
+        for (int i = 0; i < N; i++) {
+            arr[i] = Integer.parseInt(input[i]);
         }
 
-        int N = Integer.parseInt(nStr);
-        if (N <= 0) {
-            System.out.println(0);
-            return;
+        int[] pos = new int[N + 1];
+        for (int i = 0; i < N; i++) {
+            pos[arr[i]] = i;
         }
 
-        String[] arrStr = br.readLine().split(" ");
-        if (arrStr.length != N) {
-            System.out.println(0);
-            return;
-        }
-
-        int[] arr = Arrays.stream(arrStr).mapToInt(Integer::parseInt).toArray();
-
-        int[] seq = new int[N + 1];
-        for (int i = 0; i < arr.length; i++) {
-            seq[arr[i]] = i + 1;
-        }
-
-        int lisLen = 1;
-        int currentLen = 1;
-        for (int i = 1; i < N; i++) {
-            if (seq[i] < seq[i + 1]) {
-                currentLen++;
+        int maxSeqLen = 1;
+        int currentSeqLen = 1;
+        for (int i = 2; i <= N; i++) {
+            if (pos[i] > pos[i - 1]) {
+                currentSeqLen++;
+                maxSeqLen = Math.max(maxSeqLen, currentSeqLen);
             } else {
-                currentLen = 1;
+                currentSeqLen = 1;
             }
-            lisLen = Math.max(lisLen, currentLen);
         }
 
-        System.out.println(N - lisLen);
+        System.out.println(N - maxSeqLen);
     }
 }
